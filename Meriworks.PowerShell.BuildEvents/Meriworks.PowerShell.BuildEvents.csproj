@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{55315D2D-D964-43B4-8914-D66A967842F2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Meriworks.PowerShell.BuildEvents</RootNamespace>
+    <AssemblyName>Meriworks.PowerShell.BuildEvents</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Meriworks.PowerShell.Sign, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Meriworks.PowerShell.Sign.5.0.0\lib\net45\Meriworks.PowerShell.Sign.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="nuspec\content\_msbuild\Meriworks.PowerShell.BuildEvents\Runner.ps1" />
+    <None Include="nuspec\tools\AfterBuild.ps1" />
+    <None Include="nuspec\tools\BeforeBuild.ps1" />
+    <None Include="Meriworks.PowerShell.BuildEvents.nuspec" />
+    <None Include="nuspec\build\Meriworks.PowerShell.BuildEvents.targets" />
+    <None Include="nuspec\content\_msbuild\Meriworks.PowerShell.BuildEvents\readme.md" />
+    <None Include="nuspec\tools\install.ps1" />
+    <None Include="packages.config" />
+    <None Include="_msbuild\AfterBuild.ps1" />
+    <None Include="_msbuild\BeforeBuild.ps1" />
+    <None Include="_msbuild\Meriworks.PowerShell.Sign\Functions.ps1" />
+    <None Include="_msbuild\Meriworks.PowerShell.Sign\readme.md" />
+  </ItemGroup>
+  <!--Override runner location to avoid refering self-->
+  <PropertyGroup>
+	<BuildEventsRunnerLocation>$(ProjectDir)nuspec\content\_msbuild\Meriworks.PowerShell.BuildEvents\Runner.ps1</BuildEventsRunnerLocation>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="nuspec\build\Meriworks.PowerShell.BuildEvents.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
