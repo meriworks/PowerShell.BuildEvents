@@ -4,7 +4,7 @@
     <PropertyGroup>
         <!--<PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>-->
         <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\SysNative\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
-        <BuildEventsRunnerLocation Condition=" '$(BuildEventsRunnerLocation)'=='' ">$(ProjectDir)_msbuild\Meriworks.PowerShell.BuildEvents\Runner.ps1</BuildEventsRunnerLocation>
+        <BuildEventsRunnerLocation Condition=" '$(BuildEventsRunnerLocation)'=='' ">$(MSBuildThisFileDirectory)..\tools\Runner.ps1</BuildEventsRunnerLocation>
     </PropertyGroup>
 
     <PropertyGroup>

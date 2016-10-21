@@ -43,8 +43,6 @@ Function MarkFileAsBuildActionNone([string] $path){
 
 AddFileToProjectIfItIsMissing "_msbuild/AfterBuild.ps1" (join-path $toolsPath "AfterBuild.ps1")
 AddFileToProjectIfItIsMissing "_msbuild/BeforeBuild.ps1" (join-path $toolsPath "BeforeBuild.ps1")
-MarkFileAsBuildActionNone "_msbuild/Meriworks.PowerShell.BuildEvents/Runner.ps1"
-MarkFileAsBuildActionNone "_msbuild/Meriworks.PowerShell.BuildEvents/readme.md"
 
 # SIG # Begin signature block
 # MIIWcAYJKoZIhvcNAQcCoIIWYTCCFl0CAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB

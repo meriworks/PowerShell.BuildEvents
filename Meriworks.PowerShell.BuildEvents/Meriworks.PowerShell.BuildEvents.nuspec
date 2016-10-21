@@ -1,17 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8">
-    <id>$id$</id>
+    <id>Meriworks.PowerShell.BuildEvents</id>
     <version>$version$</version>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <authors>dhvik</authors>
     <licenseUrl>https://raw.githubusercontent.com/meriworks/PowerShell.BuildEvents/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/meriworks/PowerShell.BuildEvents</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>
-        Adds support for triggering PowerShell scripts on build events in Visual Studio. 
-        Instead of using the Build Events of visual studio, this allows you to create PowerShell 
-        scripts that is called on different build steps.
+    <description>Adds support for triggering PowerShell scripts on build events in Visual Studio. 
+Instead of using the Build Events of visual studio, this allows you to create PowerShell scripts that is called on different build steps.
     </description>
     <tags>Meriworks PowerShell visual studio Project</tags>
     <releaseNotes>
@@ -20,7 +17,6 @@
   </metadata>
   <files>
     <file src="nuspec\build\**\*.*" target="build\"/>
-    <file src="nuspec\content\**\*.*" target="content\"/>
     <file src="nuspec\tools\**\*.*" target="tools\"/>
   </files>
 </package>

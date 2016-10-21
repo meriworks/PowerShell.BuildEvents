@@ -4,5 +4,4 @@
 . (Join-Path $projectDir "_msbuild/Meriworks.PowerShell.Sign/Functions.ps1")
 
 Write-Host "Signing scripts"
-SignScript (join-path $projectDir "nuspec/tools/install.ps1")
-SignScriptsInFolder (join-path $projectDir "nuspec/content/_msbuild/Meriworks.PowerShell.BuildEvents")
+SignScriptsInFolder (join-path $projectDir "nuspec/tools")
