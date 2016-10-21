@@ -1,9 +1,32 @@
-﻿param([string] $name, [string] $solutionDir, [string] $projectDir, [string] $targetPath, [string] $configuration)
+﻿param([string] $name, [string] $extensions, [string] $solutionDir, [string] $projectDir, [string] $targetPath, [string] $configuration)
 
 ##Add errorhandling
 trap {"Error in $name in $configuration build: $($_.InvocationInfo.PositionMessage)`r`n$($_.Exception.Message)"; exit 1; continue}
 
+function LoadExtensions($s){
+	Write-Host "Debug: Loading extension modules $s"
+	if($s -eq $null) {
+		return
+	}
+    $arr = $s -split ","
+    foreach($f in $arr) {
+		if($f -eq "") {
+			continue
+		}
+		if(Test-Path $f){
+			$f = Resolve-Path $f
+			Write-Host "Load extension module $f"
+			Import-Module $f
+		} else {
+			Write-Error "Warning: Extension module is missing $f"
+		}
+    }
+}
+
+
 Write-Host "Information: Running $name in $configuration build"
+
+LoadExtensions $extensions
 
 $paths = @((Join-Path $projectDir "_msbuild/$name$configuration.ps1"), (Join-Path $projectDir "_msbuild/$name.ps1"))
 foreach($path in $paths) {
@@ -18,8 +41,8 @@ foreach($path in $paths) {
 # SIG # Begin signature block
 # MIIWcAYJKoZIhvcNAQcCoIIWYTCCFl0CAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXaoR2BgLsPqCnZk1IQLFrkrt
-# ytCgghHAMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU72GPuxNj24tUS5nqFxLm/FgE
+# g1SgghHAMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
 # AQUFADCBizELMAkGA1UEBhMCWkExFTATBgNVBAgTDFdlc3Rlcm4gQ2FwZTEUMBIG
 # A1UEBxMLRHVyYmFudmlsbGUxDzANBgNVBAoTBlRoYXd0ZTEdMBsGA1UECxMUVGhh
 # d3RlIENlcnRpZmljYXRpb24xHzAdBgNVBAMTFlRoYXd0ZSBUaW1lc3RhbXBpbmcg
@@ -118,22 +141,22 @@ foreach($path in $paths) {
 # LgYDVQQDEydHbG9iYWxTaWduIENvZGVTaWduaW5nIENBIC0gU0hBMjU2IC0gRzIC
 # DFeHRSyJO9lNEFdVJDAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAigAoAA
 # oQKAADAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgELMQ4w
-# DAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUYTmbQWNTEvqDOR+09n8YF7j+
-# OPwwDQYJKoZIhvcNAQEBBQAEggEAT0nh+f2muemBGo0tqWtc7cXXzMUSpCOkWdE7
-# s9CP6qRvFXkoO2Tq+a9279rB0tX/93LMpQtxPKGfQVHC54ifje9PUecYMFjOUtg6
-# kpg7m7QHSVMRmWPbXKYTeKb2kJ+RDV4xKMFW6GNGgA4UV9j3vF1lEaplbv3WVXOW
-# v7eLFRyRbkhum8CKlHYB5ySViqoEGWgRsipp1BRUxpyMqPJJ098LC3UlsAa3zTAu
-# NEOENSTzNk7Zlon6X+PwcR9FSiOEct3g/P6Vv4Lo97dN74qN/KJAmRZB1jDwOQ/t
-# Hv26hHueu88Ob464A+pbz+9yp8G8t6leGQuBxPvy3WJfvzzH4KGCAgswggIHBgkq
+# DAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQU+wLL9XgTpTbgt6LZCMtiefix
+# i90wDQYJKoZIhvcNAQEBBQAEggEAWvhBt53KZHE2Iy0ImVFKefbfjzLyTUsURUse
+# z0uLY2+QdDlXHyyoaRHNHSF7iqHe76EQYdJEFKN5YzayI0wyMDVPy+co3vnPFzmF
+# EnQeS/XVFSQcHZtamH7TR9uVkgBo9IpbcsDHJm6kzfUYhbqYkKIiuXkHL6YaRzfm
+# 12KAHQU5H+z9sr2ygdryTupLBhGSv4bzJbDWm5NlJMuZewlD2Dinx/G3YFiiB7C1
+# Fg1qA6IAWugjvlIFgmRApkvkeVAvhNQlKqYKWEMLf4uxmlirQZ/+3Vqiwm4AAWY8
+# yMKztBbgceg+RYKzzIYYBsRypEFOdMNjjwI1I8+zF9TKIqc4YKGCAgswggIHBgkq
 # hkiG9w0BCQYxggH4MIIB9AIBATByMF4xCzAJBgNVBAYTAlVTMR0wGwYDVQQKExRT
 # eW1hbnRlYyBDb3Jwb3JhdGlvbjEwMC4GA1UEAxMnU3ltYW50ZWMgVGltZSBTdGFt
 # cGluZyBTZXJ2aWNlcyBDQSAtIEcyAhAOz/Q4yP6/NW4E2GqYGxpQMAkGBSsOAwIa
 # BQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0x
-# NjEwMTcwNzQyMTNaMCMGCSqGSIb3DQEJBDEWBBTsJ9dNVntJmr1Xa7U0oTvSjNNq
-# jDANBgkqhkiG9w0BAQEFAASCAQCE0th8CWbVGJHNaufzkpWx9AuiuJ/zQkt8rF8y
-# gCpg/Agi19KLC2Ph43Tx/cwj6w3HrGWFsiMzGztsxe/+tyR7eGe86MeqJ73c6JF3
-# pX81P2eFQ3uHNTdtVPJJRlf298zBWBLmvhLxXBQFIP69FO2oqDRq0aY90lEXhayQ
-# lswr7okBl8xnG+jgl36Tqh1+uGNp4xXtoiRAF0U3a5rsdX0fj5m8kAQRYuFYcp1W
-# pjVOdETjx/ToM60BJS4BHb3nuprlMo+xYG6qe8kLNMhrdqcQdC9v/C3ObpLZ6/zR
-# SrmN3L2JlsU2E5QHcWfFu4zRrhuo70zm6/J1fgi7e9tBwMXP
+# NjEwMjEwNzMxNDVaMCMGCSqGSIb3DQEJBDEWBBQjyYvIzJ9RX4PAslEPopuWfFoS
+# bjANBgkqhkiG9w0BAQEFAASCAQAV+IhNFV4qCvvpcUo1KTZGYeH2uYLbjyxxaLry
+# 1EVuw0LAr1V5nSlGdSJoas+yBORG84gF+rjdKXH+bL/7ondRfNtOYuWcuc5JtAs1
+# Ybagn9sF7jrZQVqkLI3PYMjLCYSNjxx+vgZ6Ka8YN3crbSJw6QttE6EyHsmKPMPc
+# qGdP9TbIIhirQk9vdsloV7wFPL9dWh1/YLEtuXsUEEKZeG8NNttFOgPXjX+Dtmao
+# 7Yy98tn4SSeqI20fGgIB6TaAN/+CpZGaUOp4O7PK8zGlMSz0pimYoGtVtXvQ0r4E
+# KcAUpH1Mb0hDfUVQK4qXXGaCD7qj1Sxnz+Cb41IR0N48lvub
 # SIG # End signature block

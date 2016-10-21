@@ -18,6 +18,9 @@ Package is developed by [Dan Händevik](mailto:dan@meriworks.se), [Meriworks](htt
 <a name="changelog"></a>
 ## Changelog
 
+### v5.1.0 - 2016-10-21
+* Added support for [Extension Modules](#Extension_Modules)
+
 ### v5.0.2 - 2016-10-21
 * Removed unused dll from nupkg file
 * Removed scripts and readme from project
@@ -54,5 +57,30 @@ where the parameters are as follows.
 * $projectDir refers to the path to the project folder.
 * $targetPath is the path to the resulting output target that the project produces.
 * $configuration is the name of the current build configuration
+
+<a name="Extension_Modules"></a>
+### Extension modules
+If you would like to add PowerShell modules to the scripts without the need to include them you can let the BuildEvents include them for you. To do that, you first need a module. _In this example we store the module in the \_msbuild folder but you can include any module you would like.__
+
+#### _msbuild\ExampleModule.psm1
+
+	function Write-HelloWorld(){
+		Write-Host "Hello World!"
+	}
+
+To make BuildEvents automatically import this module you need to add the following to the csproj file (this will append the path to the module to the list of already added modules).
+
+	<PropertyGroup>
+		<BuildEventsRunnerExtensions Condition="'$(BuildEventsRunnerExtensions)' != ''">$(BuildEventsRunnerExtensions),</BuildEventsRunnerExtensions>
+		<BuildEventsRunnerExtensions>$(BuildEventsRunnerExtensions)$(ProjectDir)_msbuild\ExampleModule.psm1</BuildEventsRunnerExtensions>
+	</PropertyGroup>
+
+You can then invoke the functions in the module in any of the BuildEvents scripts, like the example script below.
+
+#### _msbuild\afterbuild.ps1
+
+    param([string] $solutionDir, [string] $projectDir, [string] $targetPath, [string] $configuration)
+
+	Write-HelloWorld
 
 

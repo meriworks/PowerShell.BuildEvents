@@ -30,36 +30,36 @@
     </PropertyGroup>
 
     <Target Name="MPB_BeforeBuild">
-        <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;$(BuildEventsRunnerLocation)&apos; &apos;BeforeBuild&apos; &apos;$(SolutionDir)&apos; &apos;$(ProjectDir)&apos; &apos;$(TargetPath)&apos; &apos;$(Configuration)&apos;;exit $lastexitcode; } &quot;"
+        <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;$(BuildEventsRunnerLocation)&apos; &apos;BeforeBuild&apos; &apos;$(BuildEventsRunnerExtensions)&apos; &apos;$(SolutionDir)&apos; &apos;$(ProjectDir)&apos; &apos;$(TargetPath)&apos; &apos;$(Configuration)&apos;;exit $lastexitcode; } &quot;"
         Condition="Exists('$(BuildEventsRunnerLocation)')">
         </Exec>
     </Target>
 
     <Target Name="MPB_AfterBuild">
-        <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;$(BuildEventsRunnerLocation)&apos; &apos;AfterBuild&apos; &apos;$(SolutionDir)&apos; &apos;$(ProjectDir)&apos; &apos;$(TargetPath)&apos; &apos;$(Configuration)&apos;;exit $lastexitcode; } &quot;"
+        <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;$(BuildEventsRunnerLocation)&apos; &apos;AfterBuild&apos; &apos;$(BuildEventsRunnerExtensions)&apos; &apos;$(SolutionDir)&apos; &apos;$(ProjectDir)&apos; &apos;$(TargetPath)&apos; &apos;$(Configuration)&apos;;exit $lastexitcode; } &quot;"
         Condition="Exists('$(BuildEventsRunnerLocation)')">
         </Exec>
     </Target>
 
     <Target Name="MPB_BeforePublish">
-        <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;$(BuildEventsRunnerLocation)&apos; &apos;BeforePublish&apos; &apos;$(SolutionDir)&apos; &apos;$(ProjectDir)&apos; &apos;$(TargetPath)&apos; &apos;$(Configuration)&apos;;exit $lastexitcode; } &quot;"
+        <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;$(BuildEventsRunnerLocation)&apos; &apos;BeforePublish&apos; &apos;$(BuildEventsRunnerExtensions)&apos; &apos;$(SolutionDir)&apos; &apos;$(ProjectDir)&apos; &apos;$(TargetPath)&apos; &apos;$(Configuration)&apos;;exit $lastexitcode; } &quot;"
         Condition="Exists('$(BuildEventsRunnerLocation)')">
         </Exec>
     </Target>
 
     <Target Name="MPB_AfterPublish">
-        <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;$(BuildEventsRunnerLocation)&apos; &apos;AfterPublish&apos; &apos;$(SolutionDir)&apos; &apos;$(ProjectDir)&apos; &apos;$(TargetPath)&apos; &apos;$(Configuration)&apos;;exit $lastexitcode; } &quot;"
+        <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;$(BuildEventsRunnerLocation)&apos; &apos;AfterPublish&apos; &apos;$(BuildEventsRunnerExtensions)&apos; &apos;$(SolutionDir)&apos; &apos;$(ProjectDir)&apos; &apos;$(TargetPath)&apos; &apos;$(Configuration)&apos;;exit $lastexitcode; } &quot;"
         Condition="Exists('$(BuildEventsRunnerLocation)')">
         </Exec>
     </Target>
     <Target Name="MPB_BeforeCompile">
-        <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;$(BuildEventsRunnerLocation)&apos; &apos;BeforeCompile&apos; &apos;$(SolutionDir)&apos; &apos;$(ProjectDir)&apos; &apos;$(TargetPath)&apos; &apos;$(Configuration)&apos;;exit $lastexitcode; } &quot;"
+        <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;$(BuildEventsRunnerLocation)&apos; &apos;BeforeCompile&apos; &apos;$(BuildEventsRunnerExtensions)&apos; &apos;$(SolutionDir)&apos; &apos;$(ProjectDir)&apos; &apos;$(TargetPath)&apos; &apos;$(Configuration)&apos;;exit $lastexitcode; } &quot;"
         Condition="Exists('$(BuildEventsRunnerLocation)')">
         </Exec>
     </Target>
 
     <Target Name="MPB_AfterCompile">
-        <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;$(BuildEventsRunnerLocation)&apos; &apos;AfterCompile&apos; &apos;$(SolutionDir)&apos; &apos;$(ProjectDir)&apos; &apos;$(TargetPath)&apos; &apos;$(Configuration)&apos;;exit $lastexitcode; } &quot;"
+        <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;&apos;$(BuildEventsRunnerLocation)&apos; &apos;AfterCompile&apos; &apos;$(BuildEventsRunnerExtensions)&apos; &apos;$(SolutionDir)&apos; &apos;$(ProjectDir)&apos; &apos;$(TargetPath)&apos; &apos;$(Configuration)&apos;;exit $lastexitcode; } &quot;"
         Condition="Exists('$(BuildEventsRunnerLocation)')">
         </Exec>
     </Target>
