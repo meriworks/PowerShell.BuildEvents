@@ -1,8 +1,5 @@
 ﻿param([string] $solutionDir, [string] $projectDir, [string] $targetPath)
 
-#Add powershell statements that should be executed after the build
-. (Join-Path $projectDir "_msbuild/Meriworks.PowerShell.Sign/Functions.ps1")
-
 Write-HelloWorld
 
 Write-Host "Signing scripts"

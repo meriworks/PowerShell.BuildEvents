@@ -9,11 +9,11 @@ Instead of using the Build Events of visual studio, this allows you to create Po
 
 <a name="license"></a>
 ## License
-Project is licensed using the [MIT License](LICENSE.md).
+Licensed using the [MIT License](LICENSE.md).
 
 <a name="author"></a>
 ## Author
-Package is developed by [Dan Händevik](mailto:dan@meriworks.se), [Meriworks](http://www.meriworks.se).
+Developed by [Dan Händevik](mailto:dan@meriworks.se), [Meriworks](http://www.meriworks.se).
 
 <a name="changelog"></a>
 ## Changelog
