@@ -7,8 +7,9 @@ Function AddFileToProjectIfItIsMissing([string] $filename,[string] $source) {
 	Write-host "Checking $targetPath"
 	if(!(Test-Path $targetPath)) {
 		Write-Host "Adding missing file $filename to project"
+		$targetPath = (Split-Path -Parent $targetPath)+"\"
 		Write-Host "Copy $source to $targetPath"
-		copy $source $targetPath
+		xcopy $source $targetPath
 		$project.ProjectItems.AddFromFile($targetPath)|out-null
 	}
 }
@@ -47,8 +48,8 @@ AddFileToProjectIfItIsMissing "_msbuild/BeforeBuild.ps1" (join-path $toolsPath "
 # SIG # Begin signature block
 # MIIWcAYJKoZIhvcNAQcCoIIWYTCCFl0CAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUtg192ifGw/t0LaT0jhlEv/pg
-# xF2gghHAMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAzQYWvwwaEyM8gI6UV2ohmWH
+# CaugghHAMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
 # AQUFADCBizELMAkGA1UEBhMCWkExFTATBgNVBAgTDFdlc3Rlcm4gQ2FwZTEUMBIG
 # A1UEBxMLRHVyYmFudmlsbGUxDzANBgNVBAoTBlRoYXd0ZTEdMBsGA1UECxMUVGhh
 # d3RlIENlcnRpZmljYXRpb24xHzAdBgNVBAMTFlRoYXd0ZSBUaW1lc3RhbXBpbmcg
@@ -147,22 +148,22 @@ AddFileToProjectIfItIsMissing "_msbuild/BeforeBuild.ps1" (join-path $toolsPath "
 # LgYDVQQDEydHbG9iYWxTaWduIENvZGVTaWduaW5nIENBIC0gU0hBMjU2IC0gRzIC
 # DFeHRSyJO9lNEFdVJDAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAigAoAA
 # oQKAADAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgELMQ4w
-# DAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUTyW5paEg3UBDaHj+7jW5aNsH
-# VQMwDQYJKoZIhvcNAQEBBQAEggEAyghzxN5lhm04lu/c+7TTc3ZAUGutGuSPFhUH
-# oHaDy+UsydIKLcilN5uQgdt8TpGyLDfbLWGbncGASjV+EosxJzn4ZdOeNGVt5kpw
-# KqqjLds/BSmbVDqpzMN8yjDDiKW+WPXVoXMtTBslh8tkViSKlmjwMhAs7UYdoGom
-# y33MZJDNc7SCzX+ONvij3DfLZFANAPFuPrVRmQEdUmgaOMm1q3E87pxxbO+aQxdY
-# QE46NToVgecgg8RuwP9nxxP3UAT/mZNoywSEhwz6ZWnknB079nRffvaotxmX0Q+o
-# j2i3m2etPpp8e4P/dRT8li6fLyoePr40p2L++Ls/IBz/5wZjUKGCAgswggIHBgkq
+# DAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUoi0O/4yuVFW4p0y7MTLww0x5
+# 0UcwDQYJKoZIhvcNAQEBBQAEggEAA17Q0A6+ovfc01mG8Ntw/qFQpCjfDYdEa+85
+# 3i3u+6AS++OWCyN740+aas012jxtqy+UUi6QEYy1SuGpCTP9PNv3j4S7rf3z4RTd
+# Mh172GNtSf+jpH7dQv6/RRPLNbgbcWbC3TPfdsQC3/a0p/DQBhV226Fpd7fK4VXN
+# 5Bhi9KqqdB62amPiBLGuSTGmj+jlCCMw2QlO9Jm8e9enQQ5PWQPjkKcpBf3D1KLv
+# jslqnr/mXOVzeDkU215CfRJOcb6X17NI4hq4KQOJcGjzXKENIfUSpcL/551ZWR9K
+# d8xlo/YfXe8nG/y3CICw1kIyzr8ve9RMEX+ubDUysC1aAEKhVKGCAgswggIHBgkq
 # hkiG9w0BCQYxggH4MIIB9AIBATByMF4xCzAJBgNVBAYTAlVTMR0wGwYDVQQKExRT
 # eW1hbnRlYyBDb3Jwb3JhdGlvbjEwMC4GA1UEAxMnU3ltYW50ZWMgVGltZSBTdGFt
 # cGluZyBTZXJ2aWNlcyBDQSAtIEcyAhAOz/Q4yP6/NW4E2GqYGxpQMAkGBSsOAwIa
 # BQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0x
-# NjEwMjEwNzIwMzRaMCMGCSqGSIb3DQEJBDEWBBSkdLjLjB85w6+np92O9GenuoWQ
-# oDANBgkqhkiG9w0BAQEFAASCAQCGy24j+VZsrmSZc5LjgDqEhZ9FNs5PvwIPxXSb
-# n9B2vWS30WoC94GbWVOFMy6L5LwHckAoudMaj3y84EHg7wB6/f0c76ZizUwAd4YO
-# in5QC+47C85w21tzn81ctLoqmsno2suqqnfsommYc/MWc+FNTT5FmX5OBk4qTf+x
-# YCYvMfG41isVMnSUfZ2+A1WVM/2HYPeroljj61Q28CK3uGKJei/twra6LUOx+jAF
-# 83J4L36xyJ3trVrI4xsDkfPUP9feLMLKi6AYj7B0+lvPzQeAgNSVskxTIaQHZOso
-# ViVM12RJ3hMCQYYN/D6NFZ9zORizY7QXQeV3MhV6u5lBirar
+# NjEwMjYwOTQ0MzBaMCMGCSqGSIb3DQEJBDEWBBSsekMOEURuoHfzYmnRhgXRUO+S
+# BjANBgkqhkiG9w0BAQEFAASCAQB2RUYD3VXEpVlTharhbe3s1Td5bejT4O2JqQ36
+# Ja3HWHOGQR0RaxBZ4HtU6a5TXiBtJRXOO5tBuF7FLWDG5ArFRfSn1nikCPxLltDl
+# 5etQdGM/RDu/kDMvG1x580EBHNwth1JhUAAGGNycu3BnQlWDF0d5ts6p0Dgo3tlY
+# jFTM7oSRW29d4Uvw/A9rxmihmwtLMjv2CExjNc9YoE56P1UI8lXOXKejAymdSjmq
+# kqXJkdDlut37sLvB2k7ZvQG8JFGk5waC2rkEtXhKGm00DB0OEpYhU8rPIVMQFlKp
+# +wdRMqqIb72RAWz5xh6TNXZjKOr+a1vlfeoHIeK6mv9SviSu
 # SIG # End signature block

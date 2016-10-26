@@ -17,6 +17,8 @@ Developed by [Dan Händevik](mailto:dan@meriworks.se), [Meriworks](http://www.mer
 
 <a name="changelog"></a>
 ## Changelog
+### v5.1.1 - 2016-10-26
+* Fixed error ['copy: Could not find a part of the path' issue (#1)](https://github.com/meriworks/PowerShell.BuildEvents/issues/1)
 
 ### v5.1.0 - 2016-10-21
 * Added support for [Extension Modules](#Extension_Modules)
@@ -64,16 +66,16 @@ If you would like to add PowerShell modules to the scripts without the need to i
 
 #### _msbuild\ExampleModule.psm1
 
-	function Write-HelloWorld(){
-		Write-Host "Hello World!"
-	}
+    function Write-HelloWorld(){
+        Write-Host "Hello World!"
+    }
 
 To make BuildEvents automatically import this module you need to add the following to the csproj file (this will append the path to the module to the list of already added modules).
 
-	<PropertyGroup>
-		<BuildEventsRunnerExtensions Condition="'$(BuildEventsRunnerExtensions)' != ''">$(BuildEventsRunnerExtensions),</BuildEventsRunnerExtensions>
-		<BuildEventsRunnerExtensions>$(BuildEventsRunnerExtensions)$(ProjectDir)_msbuild\ExampleModule.psm1</BuildEventsRunnerExtensions>
-	</PropertyGroup>
+    <PropertyGroup>
+        <BuildEventsRunnerExtensions Condition="'$(BuildEventsRunnerExtensions)' != ''">$(BuildEventsRunnerExtensions),</BuildEventsRunnerExtensions>
+        <BuildEventsRunnerExtensions>$(BuildEventsRunnerExtensions)$(ProjectDir)_msbuild\ExampleModule.psm1</BuildEventsRunnerExtensions>
+    </PropertyGroup>
 
 You can then invoke the functions in the module in any of the BuildEvents scripts, like the example script below.
 
@@ -81,6 +83,6 @@ You can then invoke the functions in the module in any of the BuildEvents script
 
     param([string] $solutionDir, [string] $projectDir, [string] $targetPath, [string] $configuration)
 
-	Write-HelloWorld
+    Write-HelloWorld
 
 
