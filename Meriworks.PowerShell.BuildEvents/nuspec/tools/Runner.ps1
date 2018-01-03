@@ -43,8 +43,8 @@ function LoadVariables($s){
 		Set-Variable -name $kv[0] -Value $kv[1] -Scope Global
     }
 }
-
-Write-Host "Information: Running $name in $configuration build"
+Write-Host "Information: Documentation for Meriworks.PowerShell.BuildEvents can be found @ https://github.com/meriworks/PowerShell.BuildEvents"
+Write-Host "Running $name in $configuration build"
 
 LoadExtensions $extensions
 LoadVariables $variables
@@ -62,8 +62,8 @@ foreach($path in $paths) {
 # SIG # Begin signature block
 # MIIbPQYJKoZIhvcNAQcCoIIbLjCCGyoCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU5porhH4xJRkW/iAdXsuxJpOe
-# mmigghaNMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxUao8puirRtadSDklCeQoiAs
+# m96gghaNMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
 # AQUFADCBizELMAkGA1UEBhMCWkExFTATBgNVBAgTDFdlc3Rlcm4gQ2FwZTEUMBIG
 # A1UEBxMLRHVyYmFudmlsbGUxDzANBgNVBAoTBlRoYXd0ZTEdMBsGA1UECxMUVGhh
 # d3RlIENlcnRpZmljYXRpb24xHzAdBgNVBAMTFlRoYXd0ZSBUaW1lc3RhbXBpbmcg
@@ -188,22 +188,22 @@ foreach($path in $paths) {
 # Q29kZVNpZ25pbmcgQ0EgLSBTSEEyNTYgLSBHMwIMW2qjK6+71wtbCxA7MAkGBSsO
 # AwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3DQEJAzEM
 # BgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEVMCMGCSqG
-# SIb3DQEJBDEWBBRoTgFSafyKztinLVtyxtawvJiayjANBgkqhkiG9w0BAQEFAASC
-# AQBm4sIGwzOfEOyYwTSBUp7OJ5JzShbqltQ0beJD966u+RDbrKCTMriVyc3nYq88
-# uGiq+biWKiwV4KO9FKbuEe5DV9ul8kFZVWLlfJclaJDnBdwc4M8qqZgeaGNp7pjH
-# s8AiR6dyylTl6MfKpxku+REWIYaOgU+sCmW7iqXijQYMLrXZJvwj6JRNfO2xqyd0
-# fGvkaEo52eQGTomDJIYUosK9VYJMn+hKiA62bVbQxFM24rrrXvwQQEUNkR57P34f
-# hZlWtN0L5t8U367hGp3KB0m5E8l8kOKtx5IGhbeadeyWmYu+oe23fGxjp2xBRPON
-# /V/BV7aDeuPmQcICpLy6kDlkoYICCzCCAgcGCSqGSIb3DQEJBjGCAfgwggH0AgEB
+# SIb3DQEJBDEWBBQL5xmPdBSMz+wxYjB+ilbfhosmNTANBgkqhkiG9w0BAQEFAASC
+# AQCpiNMSE72Pn7vLnHmUslhvN/8qucEccfECBmJjoYh/DNAR4+ltun6Ds1Na8dIR
+# qXXzP0XKF5tmMXU9CuBpqlFEBY2RW8gf5JnJJjbxH5ISBhDq1JoqyWb6Xrg2O2dY
+# /UsFUgykHsyA4gaYjMAmjbjomv9qtctqNOL7hyJCZwR2QViGLgKCYANEDc3FPV9R
+# Q5jcxReY5JgRvxzWEE/f3ep8zjmK0KEnM7cEdwyx/Dwk60pJK8Y1DmrkjeDjohRI
+# 3i+qF2bOz3usZaJWPmm00Oh0xi/Erjz69iA947ciwcYUEbPQ1AVNemfuGzYfnosu
+# mhSyTb2OCLRQ+kapTu9eECmwoYICCzCCAgcGCSqGSIb3DQEJBjGCAfgwggH0AgEB
 # MHIwXjELMAkGA1UEBhMCVVMxHTAbBgNVBAoTFFN5bWFudGVjIENvcnBvcmF0aW9u
 # MTAwLgYDVQQDEydTeW1hbnRlYyBUaW1lIFN0YW1waW5nIFNlcnZpY2VzIENBIC0g
 # RzICEA7P9DjI/r81bgTYapgbGlAwCQYFKw4DAhoFAKBdMBgGCSqGSIb3DQEJAzEL
-# BgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE4MDEwMzE5MzYyM1owIwYJKoZI
-# hvcNAQkEMRYEFATA78gCPTyLsSKbyYi+28G/dduwMA0GCSqGSIb3DQEBAQUABIIB
-# ABYWpY6t8jJQ2nZHkM95DHkHjo4Y6Pi8hsOA1ZDbqNiWqeB/lwXGkV1J5qx00esK
-# 42njDVFlYH+Nat/VcwbyDbgDxb6QGf1LmeIdxYDVjrmAo3VxWG0ZZJCCG4zdze6e
-# 2yQ2zj1+x/qte/ESOggYlTN6feDux2WSgxjZ4qalwgjJMZHlZ7kFMeNROSo9fvfW
-# VDOsgjq8YV3R0Bei1tds3w62kEvJ0TEHLko03OcwbTi/EAJRlIKDVUz8Pl44ihoL
-# eMTCi4z21xPqhQm3DeQ2SDDj4yLbP8Df111nlWxhJvXe5JBssiup/l75rmOXIr/s
-# adF/X7fS2p9ip0yVEbuA4bM=
+# BgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE4MDEwMzIxMDAwOVowIwYJKoZI
+# hvcNAQkEMRYEFLSynBvqSOzgi8DzCFrqz1Os4ZuFMA0GCSqGSIb3DQEBAQUABIIB
+# ACq/JC7m3hBVb/lOdHpZyF1giVKuitcod4lrEO+PDiyC2in/Q55pglB6+BRLrgK4
+# DDoLi8Sx78FvOqh8ubUTOmw0yXydiUzt1dNhHV2bjoW4FzNoqmOTLELoBk8QvIfz
+# AHyEgAEPwaY3SGgCb6KciIqMHOb1U0cgppnNpJg/b/7ERQYvk2iUl8uHbGqBUuxZ
+# 103BHUuSHYfWskuDfQRF6TTNXJZ+zEextc5q4Iy0XsIC0+X4QntqcjSI0f0weDi/
+# kV8o8pI4y4N6+gGuEUCoYOMjcw44GMEq/W0+COuFzwqkrTun4ltDjewjsIgo/pve
+# ALYQX8Uw/lqCjO2cfUdxzjg=
 # SIG # End signature block
