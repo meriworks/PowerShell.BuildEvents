@@ -1,5 +1,4 @@
-﻿param([string] $solutionDir, [string] $projectDir, [string] $targetPath)
-
+﻿
 Write-HelloWorld
 
 Write-Host "Signing scripts"

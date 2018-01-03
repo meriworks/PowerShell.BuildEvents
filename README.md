@@ -13,10 +13,13 @@ Licensed using the [MIT License](LICENSE.md).
 
 <a name="author"></a>
 ## Author
-Developed by [Dan Händevik](mailto:dan@meriworks.se), [Meriworks](http://www.meriworks.se).
+Developed by [Dan HÃ¤ndevik](mailto:dan@meriworks.se), [Meriworks](http://www.meriworks.se).
 
 <a name="changelog"></a>
 ## Changelog
+### v5.2.0 - 2018-01-03
+* Added support for [Extension Variables](#Extension_Variables)
+
 ### v5.1.1 - 2016-10-26
 * Fixed error ['copy: Could not find a part of the path' issue (#1)](https://github.com/meriworks/PowerShell.BuildEvents/issues/1)
 
@@ -49,16 +52,32 @@ You can also specify a script that only will be triggered during a specific conf
 ie. **AfterBuildRelease.ps1** will only be triggered after a release build. 
 
 ### The scripts
-The script is a powershell script (.ps1) that will be invoked with four parameters,
+The script is a standard PowerShell script (.ps1) that will be invoked in the build process.
 
-    param([string] $solutionDir, [string] $projectDir, [string] $targetPath, [string] $configuration)
-
-where the parameters are as follows.
+In addition to the normal PowerShell environment, extensions and variables are available in the global scope. As per default the following variables are available.
 
 * $solutionDir refers to the path to the solution folder.
 * $projectDir refers to the path to the project folder.
 * $targetPath is the path to the resulting output target that the project produces.
 * $configuration is the name of the current build configuration
+
+<a name="Extension_Variables"></a>
+### Extension variables
+If you would like to add global variables that are available when running a build event, you can do this using an extension variable.
+
+To make BuildEvents automatically import this variable you need to add the following to the csproj file (this will append the path to the module to the list of already added variables).
+
+    <PropertyGroup>
+        <BuildEventsRunnerVariables>$(BuildEventsRunnerVariables),myVariable=myValue</BuildEventsRunnerVariables>
+    </PropertyGroup>
+
+You can then use this variable in your build script like below.
+
+> Note: No escape sequences for using , or = in the variable value is supported for now.
+
+#### _msbuild\afterbuild.ps1
+
+    echo $myVariable
 
 <a name="Extension_Modules"></a>
 ### Extension modules
@@ -73,15 +92,12 @@ If you would like to add PowerShell modules to the scripts without the need to i
 To make BuildEvents automatically import this module you need to add the following to the csproj file (this will append the path to the module to the list of already added modules).
 
     <PropertyGroup>
-        <BuildEventsRunnerExtensions Condition="'$(BuildEventsRunnerExtensions)' != ''">$(BuildEventsRunnerExtensions),</BuildEventsRunnerExtensions>
-        <BuildEventsRunnerExtensions>$(BuildEventsRunnerExtensions)$(ProjectDir)_msbuild\ExampleModule.psm1</BuildEventsRunnerExtensions>
+        <BuildEventsRunnerExtensions>$(BuildEventsRunnerExtensions),$(ProjectDir)_msbuild\ExampleModule.psm1</BuildEventsRunnerExtensions>
     </PropertyGroup>
 
 You can then invoke the functions in the module in any of the BuildEvents scripts, like the example script below.
 
 #### _msbuild\afterbuild.ps1
-
-    param([string] $solutionDir, [string] $projectDir, [string] $targetPath, [string] $configuration)
 
     Write-HelloWorld
 

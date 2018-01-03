@@ -1,3 +1,4 @@
 ﻿function Write-HelloWorld(){
-	Write-Host "Hello World!"
+	#exported global variable 
+	Write-Host "Greeting: $greeting"
 }
