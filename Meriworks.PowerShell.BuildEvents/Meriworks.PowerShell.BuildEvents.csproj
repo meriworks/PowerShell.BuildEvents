@@ -56,7 +56,6 @@
     <None Include="nuspec\tools\install.ps1" />
     <None Include="packages.config" />
     <None Include="_msbuild\AfterBuild.ps1" />
-    <None Include="_msbuild\BeforeBuild.ps1" />
     <None Include="_msbuild\ExampleModule.psm1" />
   </ItemGroup>
   <ItemGroup />

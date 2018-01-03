@@ -19,6 +19,7 @@ Developed by [Dan Händevik](mailto:dan@meriworks.se), [Meriworks](http://www.me
 ## Changelog
 ### v5.2.0 - 2018-01-03
 * Added support for [Extension Variables](#Extension_Variables)
+* Reduced build time by not executing PowerShell runner when no script exists for the current action
 
 ### v5.1.1 - 2016-10-26
 * Fixed error ['copy: Could not find a part of the path' issue (#1)](https://github.com/meriworks/PowerShell.BuildEvents/issues/1)
