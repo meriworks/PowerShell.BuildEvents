@@ -17,6 +17,9 @@ Developed by [Dan Händevik](mailto:dan@meriworks.se), [Meriworks](http://www.me
 
 <a name="changelog"></a>
 ## Changelog
+### v5.3.0 - 2020-09-01
+* Moved to azure pipelines
+
 ### v5.2.0 - 2018-01-03
 * Added support for [Extension Variables](#Extension_Variables)
 * Reduced build time by not executing PowerShell runner when no script exists for the current action
