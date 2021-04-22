@@ -17,6 +17,10 @@ Developed by [Dan Händevik](mailto:dan@meriworks.se), [Meriworks](http://www.me
 
 <a name="changelog"></a>
 ## Changelog
+
+### v5.4 - 2021-04-22
+* Removed dll from nuget package
+
 ### v5.3.0 - 2020-09-01
 * Moved to azure pipelines
 

@@ -18,7 +18,7 @@ variables:
 - group: 'Certificate Passwords'
 - group: 'common'
 - name:  version.majorMinor
-  value: '5.3'
+  value: '5.4'
 #build will reset to 0 whenever version.majorMinor is changed
 - name: version.build
   value: $[counter(variables['version.majorMinor'],0)]
@@ -86,10 +86,12 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
-    command: 'pack'
-    packagesToPack: '**\*.csproj;!**\*.Tests.csproj'
-    packDestination: '$(build.artifactstagingdirectory)'
-    versioningScheme: 'off'
+    command: 'custom'
+    arguments: 'pack $(Build.SourcesDirectory)\Meriworks.PowerShell.BuildEvents\Meriworks.PowerShell.BuildEvents.csproj  -NonInteractive -OutputDirectory $(build.artifactstagingdirectory) -Properties Configuration=Release -Verbosity Detailed -Exclude bin/**/*.*'
+    # command: 'pack'
+    # packagesToPack: '**\*.csproj;!**\*.Tests.csproj'
+    # packDestination: '$(build.artifactstagingdirectory)'
+    # versioningScheme: 'off'
     
 - task: NuGetCommand@2
   inputs:
