@@ -1,11 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/MsBuild/2003" ToolsVersion="4.0">
 
-    <PropertyGroup>
-        <!--<PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>-->
-        <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\SysNative\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
-        <BuildEventsRunnerLocation Condition=" '$(BuildEventsRunnerLocation)'=='' ">$(MSBuildThisFileDirectory)..\tools\Runner.ps1</BuildEventsRunnerLocation>
-    </PropertyGroup>
+  <PropertyGroup>
+    <!--Mac ps 7/6-->
+    <PowerShellExe Condition=" '$(PowerShellExe)'=='' And Exists('/usr/local/microsoft/powershell/7/pwsh')">/usr/local/microsoft/powershell/7/pwsh</PowerShellExe>
+    <PowerShellExe Condition=" '$(PowerShellExe)'=='' And Exists('/usr/local/microsoft/powershell/6/pwsh')">/usr/local/microsoft/powershell/6/pwsh</PowerShellExe>
+    <!--SysNative first-->
+    <PowerShellExe Condition=" '$(PowerShellExe)'=='' And Exists('$(windir)\SysNative\WindowsPowerShell\v1.0\powershell.exe')">$(windir)\SysNative\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
+    <!--Fallback to system32-->
+    <PowerShellExe Condition=" '$(PowerShellExe)'=='' And Exists('$(windir)\System32\WindowsPowerShell\v1.0\powershell.exe')">$(windir)\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
+    <BuildEventsRunnerLocation Condition=" '$(BuildEventsRunnerLocation)'=='' ">$(MSBuildThisFileDirectory)..\tools\Runner.ps1</BuildEventsRunnerLocation>
+  </PropertyGroup>
 
     <PropertyGroup>
         <BuildDependsOn>

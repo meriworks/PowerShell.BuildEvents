@@ -1,14 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meriworks.PowerShell.BuildEvents", "Meriworks.PowerShell.BuildEvents\Meriworks.PowerShell.BuildEvents.csproj", "{55315D2D-D964-43B4-8914-D66A967842F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{52BE3A22-12F7-45BA-BD73-FCF6F8E9D6FC}"
 	ProjectSection(SolutionItems) = preProject
-		build.ps1 = build.ps1
 		LICENSE.md = LICENSE.md
+		Meriworks.PowerShell.BuildEvents.yml = Meriworks.PowerShell.BuildEvents.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -25,5 +25,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE77BDC2-253A-43AD-8BAB-CC8BA638534B}
 	EndGlobalSection
 EndGlobal

@@ -18,7 +18,7 @@ variables:
 - group: 'Certificate Passwords'
 - group: 'common'
 - name:  version.majorMinor
-  value: '5.4'
+  value: '5.5'
 #build will reset to 0 whenever version.majorMinor is changed
 - name: version.build
   value: $[counter(variables['version.majorMinor'],0)]
