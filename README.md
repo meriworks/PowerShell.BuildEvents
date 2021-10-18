@@ -16,7 +16,7 @@ Developed by [Dan Händevik](mailto:dan@meriworks.se), [Meriworks](http://www.me
 ## Changelog
 
 ### v5.5 - 2021-10-08
-* Added [BuildEventsRunnerDisable][#buildeventsrunnerdisable] property
+* Added [BuildEventsRunnerDisable](#buildeventsrunnerdisable) property
 * Fixed paths to PowerShell to work better in vscode/mac
 
 ### v5.4 - 2021-04-22
