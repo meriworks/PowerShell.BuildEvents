@@ -7,18 +7,16 @@ Instead of using the Build Events of visual studio, this allows you to create Po
 * [Changelog](#changelog)
 * [Documentation](#documentation)
 
-<a name="license"></a>
 ## License
 Licensed using the [MIT License](LICENSE.md).
 
-<a name="author"></a>
 ## Author
 Developed by [Dan Händevik](mailto:dan@meriworks.se), [Meriworks](http://www.meriworks.se).
 
-<a name="changelog"></a>
 ## Changelog
 
 ### v5.5 - 2021-10-08
+* Added [BuildEventsRunnerDisable][#buildeventsrunnerdisable] property
 * Fixed paths to PowerShell to work better in vscode/mac
 
 ### v5.4 - 2021-04-22
@@ -28,7 +26,7 @@ Developed by [Dan Händevik](mailto:dan@meriworks.se), [Meriworks](http://www.me
 * Moved to azure pipelines
 
 ### v5.2.0 - 2018-01-03
-* Added support for [Extension Variables](#Extension_Variables)
+* Added support for [Extension Variables](#extension-variables)
 * Reduced build time by not executing PowerShell runner when no script exists for the current action
 * Don't add default scripts in \_msbuild folder if there are any ps1 files present
 
@@ -36,7 +34,7 @@ Developed by [Dan Händevik](mailto:dan@meriworks.se), [Meriworks](http://www.me
 * Fixed error ['copy: Could not find a part of the path' issue (#1)](https://github.com/meriworks/PowerShell.BuildEvents/issues/1)
 
 ### v5.1.0 - 2016-10-21
-* Added support for [Extension Modules](#Extension_Modules)
+* Added support for [Extension Modules](#extension-modules)
 
 ### v5.0.2 - 2016-10-21
 * Removed unused dll from nupkg file
@@ -73,7 +71,6 @@ In addition to the normal PowerShell environment, extensions and variables are a
 * $targetPath is the path to the resulting output target that the project produces.
 * $configuration is the name of the current build configuration
 
-<a name="Extension_Variables"></a>
 ### Extension variables
 If you would like to add global variables that are available when running a build event, you can do this using an extension variable.
 
@@ -91,7 +88,6 @@ You can then use this variable in your build script like below.
 
     echo $myVariable
 
-<a name="Extension_Modules"></a>
 ### Extension modules
 If you would like to add PowerShell modules to the scripts without the need to include them you can let the BuildEvents include them for you. To do that, you first need a module. _In this example we store the module in the \_msbuild folder but you can include any module you would like.__
 
@@ -114,3 +110,15 @@ You can then invoke the functions in the module in any of the BuildEvents script
     Write-HelloWorld
 
 
+### Optional parameters
+
+#### BuildEventsRunnerDisable
+If you would like to disable the BuildEventsRunner, you can add this property to a propertyGroup 
+
+    <PropertyGroup>
+        <BuildEventsRunnerDisable>True</BuildEventsRunnerDisable>
+    </PropertyGroup>
+    
+or add it as a parameter to the msbuild argument list
+
+    /p:BuildEventsRunnerDisable=True
