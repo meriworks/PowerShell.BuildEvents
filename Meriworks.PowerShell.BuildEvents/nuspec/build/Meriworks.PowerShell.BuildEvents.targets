@@ -13,6 +13,8 @@
     <PowerShellExe Condition=" '$(PowerShellExe)'=='' And Exists('/usr/local/microsoft/powershell/6/pwsh')">/usr/local/microsoft/powershell/6/pwsh</PowerShellExe>
     <PowerShellExe Condition=" '$(PowerShellExe)'=='' And Exists('/usr/microsoft/powershell/7/pwsh')">/usr/microsoft/powershell/7/pwsh</PowerShellExe>
     <PowerShellExe Condition=" '$(PowerShellExe)'=='' And Exists('/usr/microsoft/powershell/6/pwsh')">/usr/microsoft/powershell/6/pwsh</PowerShellExe>
+    <!-- Linux (snap) -->
+    <PowerShellExe Condition=" '$(PowerShellExe)'=='' And Exists('/snap/bin/pwsh')">/snap/bin/pwsh</PowerShellExe>
     <!--Check SysNative first (32 bit app, switch to 64 bit powershell if possible)-->
     <PowerShellExe Condition=" '$(PowerShellExe)'=='' And Exists('$(windir)\SysNative\WindowsPowerShell\v1.0\powershell.exe')">$(windir)\SysNative\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
     <!--Fallback to system32-->
